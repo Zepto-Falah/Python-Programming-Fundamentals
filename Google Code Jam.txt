@@ -1,0 +1,3 @@
+List Problem Yang Sudah Diselesaikan (Walaupun Code Belum Efisien):
+
+1) Recycled Numbers - Qualification Round 2012
