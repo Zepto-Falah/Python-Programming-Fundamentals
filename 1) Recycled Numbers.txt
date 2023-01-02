@@ -1,0 +1,109 @@
+# Code ini menghasilkan output yang sesuai dengan permintaan pada problem statement. 
+# Namun, ketika di upload ke laman jawaban Google Code Jam hasilnya masih runtime error (kemungkinan karena time complexity-nya yang sangat buruk/code ini memakan banyak memori)
+
+
+from collections import Counter
+
+
+inp = int(input("Masukkan data:\n"))
+
+fr = []
+for case in range(1, inp+1):
+    data = list(map(int, input().split()))
+    a, b = data[0], data[1]
+    n = []
+    m = []
+    sr = []
+    count = 0
+    
+    if 1 <= a < 10:
+        fr.append(f"Case #{case}: {count}\n")
+
+
+    elif 10 <= a < 100:
+        for j, k in zip(range(a,b), range(b,a,-1)) :
+            n.append(str(j))
+            m.append(str(k))
+
+
+        for y in range(len(n)):
+            # print(n[y][1])
+            for z in range(len(n)):
+
+                if n[y] < m[z]:
+                    if n[y][1] == m[z][0] and n[y][0] == m[z][1]: #12,21
+                        pos = n[y][1] + n[y][0]
+                        # print(pos)
+                        count += 1
+                        sr.append(count)
+
+        fr.append(f"Case #{case}: {sr[-1]}\n")
+
+
+    elif 100 <= a < 1000:
+        for j, k in zip(range(a,b), range(b,a,-1)) :
+            n.append(str(j))
+            m.append(str(k))
+            # print(n[0][1:])
+
+
+        for y in range(len(n)):
+            most_n = Counter(n[y])
+
+            for z in range(len(n)):
+                # print(n[y])
+                # print(m[z])
+                # if n[y] < m[z]:
+                if len(most_n) != 1:
+                    if n[y][1:] == m[z][:2] and n[y][0] == m[z][-1]: #123,231 
+                        # print(n[y],"ini sebelum di swap")
+                        pos = n[y][1:] + n[y][0]
+                        # print(pos)
+                        count += 1
+                        sr.append(count)
+
+
+        fr.append(f"Case #{case}: {sr[-1]}\n")
+
+
+    elif 1000 <= a < 10000:
+        for j, k in zip(range(a,b), range(b,a,-1)) :
+            n.append(str(j))
+            m.append(str(k))
+            # print(n[0][1:])
+
+        
+        for y in range(len(n)):
+            most_n = Counter(n[y])
+
+            for z in range(len(n)):
+        
+                if n[y] < m[z]:
+                    if len(most_n) != 1:
+
+                        if n[y][1:] == m[z][:3] and n[y][0] == m[z][-1]: #1222,2221
+                            # print(n[y],"ini sebelum di swap")
+                            pos = n[y][1:] + n[y][0]
+                            # print(pos)
+                            # print(swap_n[0])
+                            count += 1
+                            sr.append(count)
+                    
+
+                        elif n[y][2:] == m[z][:2] and n[y][:2] == m[z][2:4]: #1121,2111
+                            pos = n[y][2:] + n[y][:2]
+                            # print(pos)
+                            count += 1
+                            sr.append(count)
+
+
+                        elif n[y][:3] == m[z][1:] and n[y][-1] == m[z][0]: #1432,2143
+                            pos = n[y][-1] + n[y][:3]
+                            # print(pos)
+                            count += 1
+                            sr.append(count)
+
+        fr.append(f"Case #{case}: {sr[-1]}\n")
+
+
+print(*fr,sep="")
