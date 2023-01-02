@@ -2,8 +2,6 @@
 # Namun, ketika di upload ke laman jawaban Google Code Jam hasilnya masih runtime error (kemungkinan karena time complexity-nya yang sangat buruk/code ini memakan banyak memori)
 
 
-from collections import Counter
-
 inp = int(input("Masukkan data:\n"))
 
 fr = []
